@@ -21,6 +21,7 @@ body{
     text-align: center;
 }
 a{
+    font-size: medium;
     color: #4b566a;
     text-decoration: none;
     font-weight: bold;
