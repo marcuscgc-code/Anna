@@ -15,6 +15,7 @@ body{
 #conteudo {
     background: #e8e8d9;
     padding: 10px;
+    border: solid rgb(0, 255, 4);
 }
 
 #rodape{
@@ -28,3 +29,20 @@ a{
     padding: 5px;
 }
 
+#conteudo h1{
+    font-size: 20px;
+    margin-left: 5px;
+    color: rgb(199, 179, 153);
+}
+
+footer{
+    text-align: center;
+}
+
+#aranha{
+    width: 30px;
+    height: 40px;
+    float: right;
+    margin-top: 5px;
+    position: relative;
+}
