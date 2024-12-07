@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordenadas do Clique na Imagem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    img {
+      max-width: 90%; /* Ajusta a imagem ao tamanho da tela */
+      height: auto; /* Mantém a proporção da imagem */
+      border: 1px solid #ccc;
+      cursor: pointer;
+      position: relative; /* Necessário para posicionar o círculo sobre a imagem */
+    }
+
+    .coordinates {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%; /* Torna o div redondo */
+      background-color: red;
+      width: 20px; /* Tamanho do círculo */
+      height: 20px; /* Tamanho do círculo */
+      pointer-events: none; /* Permite clicar por cima do círculo */
+    }
+  </style>
+</head>
+<body>
+  <h1>Clique na imagem</h1>
+  <img id="image" src="/SistemaSolar/imagens/sistema solar.jpg" alt="Clique na imagem">
+  <div id="coordinates" class="coordinates">Clique na imagem para ver as coordenadas.</div>
+
+  <script>
+    // Espera o carregamento do DOM
+    document.addEventListener("DOMContentLoaded", () => {
+      const image = document.getElementById("image"); // A imagem clicável
+      const coordinatesDisplay = document.getElementById("coordinates"); // Elemento para exibir as coordenadas
+
+      // Verifica se a imagem foi carregada corretamente
+      image.onload = () => {
+        const originalWidth = image.naturalWidth; // Largura real da imagem
+        const originalHeight = image.naturalHeight; // Altura real da imagem
+
+        console.log('Imagem carregada com sucesso!');
+        console.log(`Largura original: ${originalWidth}, Altura original: ${originalHeight}`);
+
+        // Adiciona o evento de clique na imagem
+        image.addEventListener("click", (event) => {
+          const rect = image.getBoundingClientRect(); // Dimensões da imagem na tela
+          const clickX = event.clientX - rect.left; // Coordenada X relativa à imagem
+          const clickY = event.clientY - rect.top; // Coordenada Y relativa à imagem
+
+          // Calcula as coordenadas reais da imagem original
+          const scaleX = originalWidth / rect.width; // Fator de escala X
+          const scaleY = originalHeight / rect.height; // Fator de escala Y
+          const realX = Math.round(clickX * scaleX); // Coordenada X na imagem original
+          const realY = Math.round(clickY * scaleY); // Coordenada Y na imagem original
+
+          // Atualiza o texto na tela com as coordenadas
+          coordinatesDisplay.textContent = `Coordenadas reais na imagem: X = ${realX}, Y = ${realY}`;
+
+          // Cria o círculo vermelho na posição clicada
+          const circle = document.createElement("div");
+          circle.classList.add("circle");
+          // Posiciona o círculo nas coordenadas do clique
+          circle.style.left = `${clickX - 10}px`;  // Subtrai 10 para centralizar o círculo no clique
+          circle.style.top = `${clickY - 10}px`;   // Subtrai 10 para centralizar o círculo no clique
+
+          // Adiciona o círculo ao corpo da imagem
+          image.appendChild(circle);
+        });
+      };
+
+      // Caso a imagem não carregue
+      image.onerror = () => {
+        coordinatesDisplay.textContent = "Erro: Não foi possível carregar a imagem.";
+        console.error("Erro ao carregar a imagem.");
+      };
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+*{
+    font-family: sans-serif;
+    margin-left: 20px;
+    box-sizing: content-box;
+
+}
+
+div{
+    padding: 0px;
+}
+ #container .gift_sistema iframe{
+     display: flex;
+     justify-content: center;
+     align-items: center; 
+     height: 300px;
+     padding: 0px;
+     margin: 0px;
+     left: 45%;
+
+ }
+.sistema_solar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 40px;
+    position: relative;
+    left: 100px;
+    
+ }
+
+ .imagem_saturno{
+    width: 200px;
+    display: block;
+    margin: 60px;
+    float: left;
+ }
+
+ hr{
+    margin: 40px;
+ }
+
+ #container h1{
+    text-align: center;
+ }
+
+ #container iframe{
+    position: relative;
+    left: 35%;
+ }
+ 
+ #container .podcast{   
+    height: 100px;
+    position: relative;
+    left: 48%;
+ }
+ #container .audio{
+    position: relative;
+    left: 44%;
+    margin: 20px;
+ }
